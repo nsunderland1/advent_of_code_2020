@@ -10,5 +10,5 @@
 using namespace std;
 
 int main() {
-  ifstream input("input");
+  ifstream in("input");
 }
