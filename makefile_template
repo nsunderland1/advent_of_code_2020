@@ -1,0 +1,19 @@
+CC := g++
+CFLAGS := -Wall -g
+TARGET := test
+INCLUDES := -I../include
+
+SRCS := $(wildcard *.cpp)
+OBJS := $(patsubst %.cpp,%.o,$(SRCS))
+
+all: $(TARGET)
+$(TARGET): $(OBJS)
+	$(CC) -o $@ $^
+%.o: %.cpp
+	$(CC) $(CFLAGS) $(INCLUDES) -c $<
+clean:
+	rm $(TARGET) *.o
+
+default: all
+
+.PHONY: all clean
