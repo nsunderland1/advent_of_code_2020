@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <string>
 #include <set>
@@ -11,4 +12,9 @@ using namespace std;
 
 int main() {
   ifstream in("input");
+  string lineStr;
+  while (in) {
+    getline(in, lineStr);
+    istringstream line(lineStr);
+  }
 }
