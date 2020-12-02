@@ -4,5 +4,5 @@ DAY=$(date +%-d)
 DAY_PADDED=$(printf "%02d" $DAY)
 
 cd day${DAY_PADDED}
-g++ puzzle${1}.cpp
+g++ -std=c++17 puzzle${1}.cpp
 ./a.out
