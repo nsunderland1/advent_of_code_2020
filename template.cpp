@@ -1,19 +1,13 @@
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <string>
-#include <set>
-#include <unordered_set>
-#include <map>
-#include <unordered_map>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
+
+#define rep(it,st,en) for(ll it=(st);it<(ll)(en);++it)
+#define allof(c) (c).begin(), (c).end()
 
 const bool IGNORE_EMPTY_LINES = true;
 
-using ist = int64_t;
+using ll = int64_t;
+using ld = long double;
 
 int main() {
   ifstream in("input");
@@ -31,3 +25,4 @@ int main() {
     istringstream lineIn(line);
   }
 }
+
