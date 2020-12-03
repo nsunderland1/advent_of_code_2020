@@ -13,6 +13,8 @@ using namespace std;
 
 const bool IGNORE_EMPTY_LINES = true;
 
+using ist = int64_t;
+
 int main() {
   ifstream in("input");
   vector<string> lines;
