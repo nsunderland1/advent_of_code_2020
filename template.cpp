@@ -11,11 +11,21 @@
 
 using namespace std;
 
+const bool IGNORE_EMPTY_LINES = true;
+
 int main() {
   ifstream in("input");
+  vector<string> lines;
   string lineStr;
+
   while (in) {
     getline(in, lineStr);
-    istringstream line(lineStr);
+    if (IGNORE_EMPTY_LINES && lineStr == "") continue;
+    lines.push_back(lineStr);
+  }
+
+  for (size_t i = 0, n = lines.size(); i < n; i += 1) {
+    string line = lines[i];
+    istringstream lineIn(line);
   }
 }
