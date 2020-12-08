@@ -69,7 +69,7 @@ int main() {
         acc += instr.Y;
         i++;
       } else {
-        i += instr.Y~
+        i += instr.Y;
       }
     }
     if (i >= code.size()) {
