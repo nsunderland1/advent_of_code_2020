@@ -32,3 +32,6 @@
 *.app
 
 .vscode
+
+# topaz doesn't want inputs posted
+day*/input
