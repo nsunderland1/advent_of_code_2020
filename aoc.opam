@@ -1,0 +1,20 @@
+opam-version: "2.0"
+version: "~dev"
+synopsis: "Advent of Code 2020"
+maintainer:[
+  "Nicholas Sunderland"
+]
+authors: [
+  "Nicholas Sunderland"
+]
+homepage: "https://github.com/nsunderland1/advent_of_code_2020"
+bug-reports: "https://github.com/nsunderland1/advent_of_code_2020/issues"
+depends: [
+  "core"
+  "angstrom"
+]
+build: [
+  [make]
+]
+dev-repo: "git+https://github.com/nsunderland1/advent_of_code_2020"
+

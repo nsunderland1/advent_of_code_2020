@@ -35,3 +35,9 @@
 
 # topaz doesn't want inputs posted
 day*/input
+
+# ocaml stuff
+.merlin
+_build
+*/dune
+*/puzzle
