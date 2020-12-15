@@ -25,32 +25,5 @@ int main() {
   }
 
   printf("%d\n", last);
-  // ifstream in("input");
-  // vi nums;
-  // string segment;
-  // ll num;
-  // while(std::getline(in, segment, ',')) {
-  //   istringstream segIn(segment);
-  //   segIn >> num;
-  //   nums.pb(num);
-  // }
-
-  // vi seen(GOAL, -1);
-  // ll last = 0;
-  // for (ll i = 0; i < nums.size(); i++) {
-  //   seen[nums[i]] = i;
-  // }
-
-  // for (ll i = nums.size(); i < GOAL-1; i++) {
-  //   if (seen[last] < 0) {
-  //     seen[last] = i;
-  //     last = 0;
-  //   } else {
-  //     ll tmp = i - seen[last];
-  //     seen[last] = i;
-  //     last = tmp;
-  //   }
-  // }
-  // cout << last << endl;
 }
 
