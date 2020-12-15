@@ -39,5 +39,4 @@ day*/input
 # ocaml stuff
 .merlin
 _build
-*/dune
 */puzzle
