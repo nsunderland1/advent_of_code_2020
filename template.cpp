@@ -20,6 +20,16 @@ const double EPS=(ld)1e-7;
 
 const bool IGNORE_EMPTY_LINES = true;
 
+vs split(const string& str, char c) {
+  string segment;
+  istringstream in;
+  vs pieces;
+  while (getline(in, segment, c)) {
+    pieces.pb(segment);
+  }
+  return pieces;
+}
+
 int main() {
   ifstream in("input");
   vs lines;
