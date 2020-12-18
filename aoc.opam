@@ -12,6 +12,7 @@ bug-reports: "https://github.com/nsunderland1/advent_of_code_2020/issues"
 depends: [
   "core"
   "angstrom"
+  "re2"
 ]
 build: [
   [make]

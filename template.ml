@@ -17,6 +17,8 @@ let parse_line line =
     take_while1 (function 'A' .. 'Z' -> true | _ -> false)
   in
   let alpha = lowercase <|> uppercase in
+  let is_whitespace = function ' ' | '\n' -> true | _ -> false in
+  let whitespace = satisfy is_whitespace in
   parse _
 
 let int_out some_int =
@@ -25,6 +27,6 @@ let int_out some_int =
 
 let _ =
   let lines = In_channel.read_lines "input" in
-  let lines = if ignore_empty_lines then List.filter ~f:(fun line -> line != "") lines else lines in
+  let lines = if ignore_empty_lines then List.filter ~f:(fun line -> not (phys_equal line "")) lines else lines in
   let data = List.map ~f:parse_line lines in
   data  
