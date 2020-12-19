@@ -24,23 +24,19 @@ let parse_line line =
   let integer =
     take_while1 (function '0' .. '9' -> true | _ -> false) >>| int_of_string
   in
-  let is_whitespace = function ' ' | '\n' -> true | _ -> false in
-  let whitespace = satisfy is_whitespace in
   let expr = fix (fun expr ->
     let subterm = choice [
       integer >>| (fun n -> Integer n);
       char '(' *> expr <* char ')';
     ]
     in
-    let term = fix (fun term -> choice [
-      (fun l r -> Op (Plus, l, r)) <$> subterm <* whitespace <* char '+' <* whitespace <*> term;
-      subterm;
-    ])
+    let left_assoc op expr_list =
+      List.reduce_exn ~f:(fun l r -> Op (op, l, r)) expr_list
     in
-    choice [
-      (fun l r -> Op (Times, l, r)) <$> term <* whitespace <* char '*' <* whitespace <*> expr;
-      term;
-    ]
+    let term =
+      sep_by1 (string " + ") subterm >>| left_assoc Plus
+    in
+    sep_by1 (string " * ") term >>| left_assoc Times
   ) in
   parse expr
 
@@ -58,7 +54,5 @@ let int_out some_int =
 let _ =
   let lines = In_channel.read_lines "input" in
   let lines = if ignore_empty_lines then List.filter ~f:(fun line -> not (phys_equal line "")) lines else lines in
-  let lines = List.map ~f:String.rev lines in
-  let lines = List.map ~f:(unstage (String.tr_multi ~target:"()" ~replacement:")(")) lines in
   let data = List.map ~f:parse_line lines in
   data |> List.map ~f:eval_expr |> List.fold_left ~f:(+) ~init:0 |> int_out
