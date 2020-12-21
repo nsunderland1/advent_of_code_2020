@@ -21,7 +21,7 @@ let parse_line line =
   let whitespace = satisfy is_whitespace in
   parse _
 
-let int_out some_int =
+let print_integer some_int =
   print_endline "";
   Out_channel.output_string stdout (string_of_int some_int)
 
