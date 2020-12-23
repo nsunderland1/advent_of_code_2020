@@ -18,11 +18,11 @@ using pii = pair<ll, ll>;
 const ll INF=(ll)1e9; 
 const double EPS=(ld)1e-7;
 
-const ll ROUNDS = 100;
-const ll INPUT_SIZE = 9;
+const ll ROUNDS = 10000000;
+const ll NUM_CUPS = 1000000;
 
-inline ll norm(ll n) { return (n-1) % INPUT_SIZE + 1; }
-inline ll prev(ll n) { return norm(n + INPUT_SIZE - 1);}
+inline ll norm(ll n) { return (n-1) % NUM_CUPS + 1; }
+inline ll prev(ll n) { return norm(n + NUM_CUPS - 1);}
 inline ll next(ll n) { return norm(n + 1); }
 
 struct Node {
@@ -31,40 +31,51 @@ struct Node {
   ll label;
 };
 
-Node* find_label(Node* start, ll label) {
-  Node* current = start;
-  do {
-    if (label == current->label) {
-      return current;
-    }
-    current = current->next;
-  } while (current != start);
-  cout << "CANT FIND " << label << endl;
-  throw "Could not find label";
+Node* find_label(const unordered_map<ll, Node*>& lookup, ll label) {
+  return lookup.find(label)->second;
 }
 
 void print_state(Node* head) {
+  cout << head << endl;
   Node* cur = head;
+  int i = 0;
   do {
     cout << cur->label << " ";
     cur = cur->next;
+    i++;
+    if (i > 10) break;
   } while (cur != head);
   cout << endl;
 }
 
+
 int main() {
-  // vi input = {3,8,9,1,2,5,4,6,7};
-  vector<ll> input = {9,5,2,4,3,8,7,1,6};
+  vi input = {9,5,2,4,3,8,7,1,6};
   vector<Node*> cups;
 
+  Node* one;
   for (ll i = 0; i < input.size(); i++) {
     cups.pb(new Node());
     cups.back()->label = input[i];
+    if (input[i] == 1) {
+      one = cups.back();
+    }
   }
 
-  for (ll i = 0; i < input.size(); i++) {
-    cups[i]->next = cups[(i + 1) % INPUT_SIZE];
-    cups[i]->prev = cups[(i + INPUT_SIZE - 1) % INPUT_SIZE];
+  cups.reserve(NUM_CUPS);
+  for (ll i = input.size(); i < NUM_CUPS; i++) {
+    Node* cup = new Node();
+    cup->label = i+1;
+    cups.pb(cup);
+  }
+
+  for (ll i = 0; i < NUM_CUPS; i++) {
+    cups[i]->next = cups[(i + 1) % NUM_CUPS];
+    cups[i]->prev = cups[(i + NUM_CUPS - 1) % NUM_CUPS];
+  }
+  unordered_map<ll, Node*> lookup;
+  for (Node* ptr : cups) {
+    lookup.insert(mp(ptr->label, ptr));
   }
 
   Node* current = cups[0];
@@ -81,7 +92,7 @@ int main() {
     current->next = rejoin;
     rejoin->prev = current;
 
-    Node* dest_node = find_label(current, dest);
+    Node* dest_node = find_label(lookup, dest);
     Node* dest_next = dest_node->next;
     dest_node->next = remhead;
     remhead->prev = dest_node;
@@ -90,6 +101,7 @@ int main() {
 
     current = rejoin;
   }
-  print_state(current);
+
+  cout << one->next->label * one->next->next->label << endl; 
 }
 
