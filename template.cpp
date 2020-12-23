@@ -22,7 +22,7 @@ const bool IGNORE_EMPTY_LINES = true;
 
 vs split(const string& str, char c) {
   string segment;
-  istringstream in;
+  istringstream in(str);
   vs pieces;
   while (getline(in, segment, c)) {
     pieces.pb(segment);
