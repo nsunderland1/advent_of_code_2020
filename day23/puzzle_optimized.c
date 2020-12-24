@@ -12,7 +12,7 @@ int main() {
   for (int i = 0; i < INPUT_SIZE; i++) {
     input[i]--;
   }
-  int* next = malloc(NUM_CUPS * sizeof(int));
+  int next[NUM_CUPS];
   for (int i = 0; i < INPUT_SIZE-1; i++) {
     next[input[i]] = input[i+1];
   }
