@@ -29,14 +29,8 @@ int main() {
     int r1 = next[current];
     int r2 = next[r1];
     int r3 = next[r2];
-    int exclude[] = {r1, r2, r3};
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 3; j++) {
-        if (exclude[j] == dest) {
-          dest = dec(dest);
-          break;
-        }
-      }
+    while (dest == r1 || dest == r2 || dest == r3) {
+      dest = dec(dest);
     }
     current = next[current] = next[r3];
     next[r3] = next[dest];
