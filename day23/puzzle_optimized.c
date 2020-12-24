@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 const int ROUNDS = 10000000;
 const int NUM_CUPS = 1000000;
