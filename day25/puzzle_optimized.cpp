@@ -4,7 +4,7 @@ using namespace std;
 using ll = uint64_t;
 
 // copied and pasted from StackOverflow :)
-ll modular(ll base, ll exp, int mod) {
+ll modexp(ll base, ll exp, int mod) {
   ll res = 1;
   while (exp > 0) {
     if (exp % 2 == 1)
@@ -16,7 +16,7 @@ ll modular(ll base, ll exp, int mod) {
 }
 
 ll transform(ll subject, ll loop_size) {
-  return modular(subject, loop_size, 20201227);
+  return modexp(subject, loop_size, 20201227);
 }
 
 const ll INITIAL = 7;
